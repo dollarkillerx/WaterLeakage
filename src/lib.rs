@@ -1,7 +1,20 @@
+pub use log::{error, info};
+
+pub use conf::*;
+
+mod conf;
+
 pub type Result<T> = std::result::Result<T, Box<dyn std::error::Error + Send + Sync>>;
 
 pub fn init_logger() {
     env_logger::init();
+}
+
+
+pub struct ConnectionState {
+    pub last_heart_beat: i32,
+    pub register_time: i64,
+    pub name: String,
 }
 
 #[cfg(test)]
@@ -35,7 +48,7 @@ mod tests {
 
     #[test]
     fn test_bincode() {
-        let package = Transport{uuid: Uuid::new_v4(), data: BytesMut::new()};
+        let package = Transport { uuid: Uuid::new_v4(), data: BytesMut::new() };
 
         let bin: Vec<u8> = bincode::serialize(&package).unwrap();
 

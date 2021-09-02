@@ -1,0 +1,8 @@
+bind_ip = "0.0.0.0"
+server_port = 7777
+
+[[client]]
+user = "test"
+port = 21001
+protocol = "tcp"
+secret_key = "123456"
