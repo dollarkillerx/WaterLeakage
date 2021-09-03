@@ -1,5 +1,3 @@
-use serde::Deserialize;
-
 use super::*;
 
 #[derive(Debug, Deserialize, Clone)]

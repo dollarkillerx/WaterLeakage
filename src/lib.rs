@@ -1,4 +1,6 @@
 pub use log::{error, info};
+pub use serde::{Deserialize, Serialize};
+use uuid::Uuid;
 
 pub use conf::*;
 
@@ -10,11 +12,24 @@ pub fn init_logger() {
     env_logger::init();
 }
 
+#[derive(Deserialize, Serialize, Debug, Clone)]
+pub enum RegisterResponse {
+    Success { uuid: String },
+    Failed { reason: String },
+}
 
+#[derive(Deserialize, Serialize, Debug, Clone)]
 pub struct ConnectionState {
     pub last_heart_beat: i32,
-    pub register_time: i64,
+    pub register_time: u128,
     pub name: String,
+}
+
+#[derive(Deserialize, Serialize, Debug, Clone)]
+pub struct ClientRegisterMessage {
+    pub name: String,
+    pub secret: String,
+    pub protocol: String,
 }
 
 #[cfg(test)]
