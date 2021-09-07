@@ -1,4 +1,4 @@
-pub use log::{error, info};
+pub use log::{debug, error, info};
 pub use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
